@@ -98,3 +98,26 @@ bottomButton.addEventListener('click', function(){
     document.querySelectorAll('div.img-container')[activeSlide].classList.add('showing');
 
 })
+
+
+// BONUS 2:
+// Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi) l’immagine attiva dovrà cambiare alla successiva.
+
+const myTimeout = setInterval(nextImages, 3000);
+
+function nextImages(){
+    activeSlide + 1;
+
+    if(activeSlide == images.length - 1){
+        activeSlide = 0;
+    }else{
+        activeSlide = activeSlide + 1;
+    }
+
+    document.querySelector('div.img-container.showing').classList.remove('showing');
+    document.querySelectorAll('div.img-container')[activeSlide].classList.add('showing');
+}
+
+// BONUS 3:
+// Aggiungere bottoni di start/stop e di inversione del meccanismo di autoplay.
+
