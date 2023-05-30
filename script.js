@@ -28,24 +28,65 @@ const images = [
 ];
 
 
+
 // Milestone 1: Ora rimuoviamo i contenuti statici e usiamo l’array di oggetti letterali per popolare dinamicamente il carosello.
-// Al click dell'utente sulle frecce verso sinistra o destra, l'immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo.
 
-
+// seleziono il contenitore dove andranno a finire le immagini del jumbo
 const jumboElement = document.querySelector('div.jumbo');
 
-for(let i = 0; i<images;i++){
-    const singleImage = images[i];
+// creo un ciclo for per pescarmi l'elemento dall'array>oggetto che mi serve
+for(let i = 0; i<images.length;i++){
     
-}
+    const singleImage = images[i];
 
-for(let j = 0; j<images;j++){
-
+// inserisco le immagini nell'DOM
     jumboElement.innerHTML += 
     `<div class="img-container">
-    <img src="./img/" alt="">
+    <img src="./${singleImage.image}" alt="">
     </div>`
 }
+
+// Al click dell'utente sulle frecce verso sinistra o destra, l'immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo.
+
+// uso una variabile per navigare nell'array e cambiare immagine
+let activeSlide = 2;
+// aggiungo la classe all'immagine che si deve vedere
+document.querySelectorAll('div.img-container')[activeSlide].classList.add('showing');
+
+const topButton = document.querySelector('button.top-button');
+
+topButton.addEventListener('click', function(){
+    
+    if(activeSlide == 0){
+        activeSlide = images.length - 1;
+    }else{
+        activeSlide = activeSlide-1;
+    }
+
+    document.querySelector('div.img-container.showing').classList.remove('showing');
+    document.querySelectorAll('div.img-container')[activeSlide].classList.add('showing');
+
+})
+
+
+
+
+
+
+const bottomButton = document.querySelector('button.bottom-button');
+
+bottomButton.addEventListener('click', function(){
+    if(activeSlide == images.length - 1){
+        activeSlide = 0;
+    }else{
+        activeSlide = activeSlide + 1;
+    }
+    
+    document.querySelector('div.img-container.showing').classList.remove('showing');
+    document.querySelectorAll('div.img-container')[activeSlide].classList.add('showing');
+
+})
+
 
 // Milestone 2:
 // Aggiungere il ciclo infinito del carosello. Ovvero se la miniatura attiva è la prima e l'utente clicca la freccia verso l'alto, la miniatura che deve attivarsi sarà l'ultima e viceversa per l'ultima miniatura se l'utente clicca la freccia verso il basso.
