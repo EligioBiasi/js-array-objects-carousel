@@ -18,6 +18,9 @@ main{
     border-radius: 1rem;
 }
 
+i{
+    color: white;
+}
 /* general class */
 .flex-centered{
     display: flex;
@@ -76,4 +79,9 @@ footer button{
     border: none;
     margin: 1.5rem 1rem;
     cursor: pointer;
+}
+
+footer button i:active{
+    color: gray;
+    
 }

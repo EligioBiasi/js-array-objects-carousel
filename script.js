@@ -121,3 +121,10 @@ function nextImages(){
 // BONUS 3:
 // Aggiungere bottoni di start/stop e di inversione del meccanismo di autoplay.
 
+// aggiunto bottone di stop
+const stopButton = document.querySelector('button.stop-button');
+
+stopButton.addEventListener('click', function(){
+    clearInterval(myTimeout);
+})
+
