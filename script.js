@@ -34,7 +34,7 @@ const images = [
 // seleziono il contenitore dove andranno a finire le immagini del jumbo
 const jumboElement = document.querySelector('div.jumbo');
 
-// creo un ciclo for per pescarmi l'elemento dall'array>oggetto che mi serve
+// creo un ciclo for per pescare l'immagine che mi serve dall'array
 for(let i = 0; i<images.length;i++){
     
     const singleImage = images[i];
@@ -46,24 +46,32 @@ for(let i = 0; i<images.length;i++){
     </div>`
 }
 
+// Milestone 2:
+// Aggiungere il ciclo infinito del carosello. Ovvero se la miniatura attiva è la prima e l'utente clicca la freccia verso l'alto, la miniatura che deve attivarsi sarà l'ultima e viceversa per l'ultima miniatura se l'utente clicca la freccia verso il basso.
 // Al click dell'utente sulle frecce verso sinistra o destra, l'immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo.
 
 // uso una variabile per navigare nell'array e cambiare immagine
 let activeSlide = 2;
-// aggiungo la classe all'immagine che si deve vedere
+
+// aggiungo la classe all'immagine che si deve vedere e sarà la prima a mostrarsi all'apertura della pagina
 document.querySelectorAll('div.img-container')[activeSlide].classList.add('showing');
 
+// recupero il bottone in alto e inserisco l'eventlistner per far scorrere le immagini
 const topButton = document.querySelector('button.top-button');
 
 topButton.addEventListener('click', function(){
     
+    // questo if fa in modo che quando si scorre fino all'ultimo elemento dell'array si riparta dall'inizio
     if(activeSlide == 0){
         activeSlide = images.length - 1;
     }else{
         activeSlide = activeSlide-1;
     }
 
+    // rimuove classe dall'immagine corrente
     document.querySelector('div.img-container.showing').classList.remove('showing');
+
+    // aggiuge classe alla nuova immagine
     document.querySelectorAll('div.img-container')[activeSlide].classList.add('showing');
 
 })
@@ -72,21 +80,21 @@ topButton.addEventListener('click', function(){
 
 
 
-
+// recupero il bottone in basso e inserisco l'eventlistner per far scorrere le immagini in modo opposto al precedente
 const bottomButton = document.querySelector('button.bottom-button');
 
 bottomButton.addEventListener('click', function(){
+    // questo if si comporta in modo analogo al precedente ma in maniera opposta
     if(activeSlide == images.length - 1){
         activeSlide = 0;
     }else{
         activeSlide = activeSlide + 1;
     }
-    
+
+    // rimuove classe dall'immagine corrente
     document.querySelector('div.img-container.showing').classList.remove('showing');
+
+    // aggiuge classe alla nuova immagine
     document.querySelectorAll('div.img-container')[activeSlide].classList.add('showing');
 
 })
-
-
-// Milestone 2:
-// Aggiungere il ciclo infinito del carosello. Ovvero se la miniatura attiva è la prima e l'utente clicca la freccia verso l'alto, la miniatura che deve attivarsi sarà l'ultima e viceversa per l'ultima miniatura se l'utente clicca la freccia verso il basso.
